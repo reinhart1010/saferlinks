@@ -1,0 +1,120 @@
+optionally_enforced: "Optional"
+enforced_if_mass_traffic: "During high traffic"
+enforced_if_private_intended: "If the content explicitly requires"
+enforced_if_auto_nsfw: "For explicit content"
+enforced_if_interacting: "Required to interact with any content"
+enforced_if_consuming: "Required to view any content"
+always_enforced: "Mandatory"
+
+account:
+  logged_in:
+    phrase: "be logged in"
+    phrase_start: "log in to <strong>{{.Name}}</strong>"
+    info_title: "{{.Name}} Account"
+    info_description: "You will be required to be logged in to view more from <strong>{{.Name}}</strong>."
+  match_region:
+    phrase: "with an account registered in <strong>{{.Regions}}</strong>"
+    phrase_start: "use a <strong>{{.Name}}</strong> registered in <strong>{{.Regions}}</strong>"
+    info_title: "{{.Name}} Account must be registered in the correct Region or Country"
+    info_description: "This content may be strictly limited to these regions or countries: {{.Regions}}."
+  not_banned_by_author:
+    phrase: "with an account not restricted or banned by the author"
+    phrase_start: "use a <strong>{{.Name}}</strong> not restricted or banned by the author"
+    info_title: "Account must not be restricted by author"
+    info_description: "Your account must not be restricted or banned by the author to view this and their contents."
+  not_banned_by_platform:
+    phrase: "with an account not restricted or banned by {{.Name}}"
+    phrase_start: "use an account not restricted or banned by <strong>{{.Name}}</strong>"
+    info_title: "Account must not be restricted by {{.Name}}"
+    info_description: "Your account must not be restricted or banned by <strong>{{.Name}}</strong> to view this and their contents."
+client_app:
+  desktop_app:
+    phrase: "use the desktop app"
+    phrase_start: "use the <strong>{{.Name}}</strong> desktop app"
+    info_title: "Desktop App"
+    info_description: "Download and install the <strong>{{.Name}}</strong> desktop app to access the content on a desktop, Mac, or PC."
+  mobile_app:
+    phrase: "use the mobile app"
+    phrase_start: "use the <strong>{{.Name}}</strong> mobile app"
+    info_title: "Mobile App"
+    info_description: "Download and install the <strong>{{.Name}}</strong> mobile app to access the content on a mobile device."
+  dedicated_hardware:
+    phrase: "use the hardware provided by {{.Name}}"
+    phrase_start: "use the hardware provided by <strong>{{.Name}}</strong>"
+    info_title: "Dedicated Client Hardware"
+    info_description: "You may be required to access the content on a dedicated hardware provided by <strong>{{.Name}}</strong> instead of this device."
+  must_latest_client_software:
+    phrase: "with the latest software"
+    phrase_start: "use the latest version of <strong>{{.Name}}</strong>"
+    info_title: "Requires Latest Client Version"
+    info_description: "For security and stability reasons, you are required to use the latest version of the software provided by <strong>{{.Name}}</strong>."
+  must_latest_host_software:
+    phrase: "on the latest operating system"
+    phrase_start: "use the latest version of your operating system"
+    info_title: "Requires Latest Operating System Version"
+    info_description: "For security and stability reasons, you are required to use the latest version of the software to run <strong>{{.Name}}</strong>."
+  match_region:
+    phrase: "have obtained the app or client in <strong>{{.Regions}}</strong>"
+    phrase_start: "use a <strong>{{.Name}}</strong> app, software, or hardware designed for sale and use within <strong>{{.Regions}}</strong>"
+    info_title: "App or Device must be obtained in the correct Region or Country"
+    info_description: "You must use the {{.Name}} app or hardware that is designed for sale and use within these regions or countries: {{.Regions}}. <strong>Unauthorized collection, modification, and/or operation of region-restricted products may be strictly prohibited by copyright and information technology laws.</strong>"
+content_access:
+  author_subscription:
+    phrase: "subscribe to the author of this content"
+    phrase_start: "subscribe to the author of this content"
+    info_title: "Author Subscription"
+    info_description: "This content may be limited to select subscribers of the author. Contact author for more details."
+  platform_subscription:
+    phrase: "have a valid {{.Name}} subscription"
+    phrase_start: "have a valid <strong>{{.Name}}</strong> subscription"
+    info_title: "{{.Name}} Subscription"
+    info_description: "This content may be limited to subscribers of select subscription plans offered by <strong>{{.Name}}</strong>. Contact {{.Name}} for more details."
+  content_payment:
+    phrase: "purchase or have a valid license"
+    phrase_start: "purchase or have a valid license"
+    info_title: "Per-Content Purchase"
+    info_description: "Viewers and customers may have to purchase for access to this content."
+  content_password:
+    phrase: "have a valid password or access code"
+    phrase_start: "have a valid password or access code"
+    info_title: "Password Protected Content"
+    info_description: "Viewers and customers may have to unlock the content with a given Password, Access Code, PIN, Token, or License Key."
+captcha:
+  phrase: "prove that you're not a robot"
+  phrase_start: "prove <strong>{{.Name}}</strong> that you're not a robot"
+  info_title: "Confirm that you are not a robot"
+  info_description: "You might be asked to complete a short challenge (like CAPTCHAs) to prove that you're not a robot."
+
+delimiters:
+  comma: ","
+  comma_space: ", "
+  comma_and: ", and"
+  comma_and_space: ", and "
+  comma_and_or: ", and/or"
+  comma_and_or_space: ", and/or "
+  comma_or: ", or"
+  comma_or_space: ", or "
+
+redirect_page:
+  title_generic: "You are leaving this website for <strong>{{.Name}}</strong>"
+  title_warning: "You are required to {{.Requirements}} to view this content."
+  policies_intro: "{{.Name}} may limit you from accessing content at <code id=\"dest-url\">{{.Url}}</code> on this web browser or device in respect to their policies:"
+  conclusion_notice: "<strong>Only visit websites you can trust.</strong> This policy summary is not a legal advice."
+  cta_continue_to_site: "Continue to Site"
+  cta_share_qr: "Share QR"
+
+noscript:
+  qr_code: "JavaScript is required to generate QR codes."
+
+country_au: Australia
+country_aus: Australia
+country_id: Indonesia
+country_idn: Indonesia
+country_my: Malaysia
+country_mys: Malaysia
+country_ph: Philippines
+country_phl: Philippines
+country_sg: Singapore
+country_sgp: Singapore
+country_us: United States
+country_usa: United States

@@ -1,0 +1,283 @@
+{{define "redirect"}}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/halfmoon.min.css" />
+    <link rel="stylesheet" href="/static/bootstrap-icons/bootstrap-icons.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>You are leaving {{.OriginAppName}} for {{.Policy.Name}}.</title>
+    <script src="/static/qrcode.min.js"></script>
+    <script src="/static/bootstrap.bundle.min.js"></script>
+</head>
+</html>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <p class="navbar-brand">{{.AppName}}</p>
+        </div>
+    </nav>
+    <main class="container d-flex flex-column gap-4">
+        <div class="d-flex flex-row justify-content-center align-items-center gap-2" aria-hidden="true">
+            <div class="specific-w-50 specific-h-50 d-flex justify-content-center align-items-center bg-danger-subtle rounded-pill" style="font-size: 1.75rem;">
+                <i class="bi bi-person-lines-fill"></i>
+            </div>
+            <div class="specific-w-50 specific-h-50 d-flex justify-content-center align-items-center bg-danger-subtle rounded-pill" style="font-size: 1.75rem;">
+                <i class="bi bi-file-earmark-lock"></i>
+            </div>
+            <div class="specific-w-100 specific-h-100 d-flex justify-content-center align-items-center bg-warning rounded-pill" style="font-size: 4rem;">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <div class="specific-w-50 specific-h-50 d-flex justify-content-center align-items-center bg-danger-subtle rounded-pill" style="font-size: 1.75rem;">
+                <i class="bi bi-crosshair"></i>
+            </div>
+            <div class="specific-w-50 specific-h-50 d-flex justify-content-center align-items-center bg-danger-subtle rounded-pill" style="font-size: 1.75rem;">
+                <i class="bi bi-currency-exchange"></i>
+            </div>
+        </div>
+        <h1 class="fs-2 fw-normal text-center">
+            {{if getMandatoryEssentialsFromPolicy .Policy}}
+                {{renderRequirementsWarning .ctx .Policy}}
+            {{else}}
+                {{TP .Ctx "redirect_page.title_generic"}}.
+            {{end}}
+        </h1>
+        <div class="d-flex flex-column gap-2">
+            <a class="btn btn-primary btn-lg w-100" href="{{.TargetURL}}">{{T .Ctx "redirect_page.cta_continue_to_site"}}</a>
+            <a class="btn btn-outline-primary btn-lg w-100" role="button" href="#share-qr" data-bs-toggle="modal">{{T .Ctx "redirect_page.cta_share_qr"}}</a>
+        </div>
+        <p class="fs-5 mb-0 text-center">{{renderRequirementsDetail .ctx .Policy .TargetURL}}</p>
+        <div class="d-flex flex-column gap-2">
+            {{if .Policy.ContentAccess}}
+                {{if .Policy.ContentAccess.ContentPayment}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-success-subtle rounded">
+                            <i class="bi bi-coin"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "content_access.content_payment.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ContentAccess.ContentPayment)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "content_access.content_payment.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ContentAccess.ContentPassword}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-success-subtle rounded">
+                            <i class="bi bi-key"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "content_access.content_password.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ContentAccess.ContentPassword)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "content_access.content_password.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ContentAccess.AuthorSubscription}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-success-subtle rounded">
+                            <i class="bi bi-coin"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "content_access.author_subscription.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ContentAccess.AuthorSubscription)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "content_access.author_subscription.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ContentAccess.PlatformSubscription}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-success-subtle rounded">
+                            <i class="bi bi-coin"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "content_access.platform_subscription.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ContentAccess.PlatformSubscription)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "content_access.platform_subscription.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+            {{if .Policy.ClientApp}}
+                {{if .Policy.ClientApp.DesktopApp}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-danger-subtle rounded">
+                            <i class="bi bi-pc-display"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "client_app.desktop_app.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ClientApp.DesktopApp)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "client_app.desktop_app.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ClientApp.MobileApp}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-danger-subtle rounded">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "client_app.mobile_app.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ClientApp.MobileApp)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "client_app.mobile_app.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ClientApp.DedicatedHardware}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-danger-subtle rounded">
+                            <i class="bi bi-motherboard"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "client_app.dedicated_hardware.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ClientApp.DedicatedHardware)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "client_app.dedicated_hardware.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ClientApp.MustLatestClientSoftware}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-danger-subtle rounded">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "client_app.must_latest_client_software.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ClientApp.MustLatestClientSoftware)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "client_app.must_latest_client_software.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ClientApp.MustLatestHostSoftware}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-danger-subtle rounded">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "client_app.must_latest_host_software.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ClientApp.MustLatestHostSoftware)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "client_app.must_latest_host_software.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.ClientApp.MatchRegion}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-danger-subtle rounded">
+                            <i class="bi bi-geo"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "client_app.match_region.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.ClientApp.MatchRegion)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "client_app.match_region.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+            {{if .Policy.Account}}
+                {{if .Policy.Account.LoggedIn}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-warning-subtle rounded">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "account.logged_in.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.Account.LoggedIn)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "account.logged_in.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.Account.MatchRegion}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-warning-subtle rounded">
+                            <i class="bi bi-geo"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{TP .Ctx "account.match_region.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.Account.MatchRegion)}}</h5>
+                            <p class="mb-0">{{TP .Ctx "account.match_region.info_description" .Policy}}</p>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+            {{if .Policy.Captcha}}
+                <div class="card d-flex p-2 flex-row gap-2">
+                    <div class="flex-shrink-1 p-2 fs-3 bg-warning-subtle rounded">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="card-title">{{TP .Ctx "captcha.info_title" .Policy}} {{template "_eubadge" (dict "Ctx" .Ctx "EnforcementUrgency" .Policy.Captcha)}}</h5>
+                        <p class="mb-0">{{TP .Ctx "captcha.info_description" .Policy}}</p>
+                    </div>
+                </div>
+            {{end}}
+            {{if .Policy.Links}}
+                {{if .Policy.Links.TermsOfUse}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-secondary-subtle rounded">
+                            <i class="bi bi-patch-exclamation"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">Terms of Service / EULA</h5>
+                            <p class="mb-0">You must agree to <strong>{{.Policy.Name}}</strong>'s Terms of Service / End User License Agreement at <a href="{{.Policy.Links.TermsOfUse}}">{{.Policy.Links.TermsOfUse}}</a>.</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.Links.Cookies}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-secondary-subtle rounded">
+                            <i class="bi bi-cookie"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">Cookies Policy</h5>
+                            <p class="mb-0"><strong>{{.Policy.Name}}</strong> may store and use your cookies by your consent, as explained on <a href="{{.Policy.Links.Cookies}}">{{.Policy.Links.Cookies}}</a>.</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.Links.Privacy}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-secondary-subtle rounded">
+                            <i class="bi bi-file-earmark-lock"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">Privacy and Data Policy</h5>
+                            <p class="mb-0">You must agree to <strong>{{.Policy.Name}}</strong>'s Privacy, Data Collection, and/or Data Processing policies at <a href="{{.Policy.Links.Privacy}}">{{.Policy.Links.Privacy}}</a>.</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.Links.Moderation}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-secondary-subtle rounded">
+                            <i class="bi bi-shield-x"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">Moderation / Community Guidelines</h5>
+                            <p class="mb-0">Your interaction within the <strong>{{.Policy.Name}}</strong> website, app, or platform are subject to moderation policies at <a href="{{.Policy.Links.Moderation}}">{{.Policy.Links.Moderation}}</a>.</p>
+                        </div>
+                    </div>
+                {{end}}
+                {{if .Policy.Links.License}}
+                    <div class="card d-flex p-2 flex-row gap-2">
+                        <div class="flex-shrink-1 p-2 fs-3 bg-secondary-subtle rounded">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">Content License Terms</h5>
+                            <p class="mb-0">You must agree to the License Terms of the content, as detailed on <a href="{{.Policy.Links.License}}"></a>{{.Policy.Links.License}}</a>.</p>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+        </div>
+        <div class="d-flex flex-column gap-1">
+            <p class="text-center"><strong>Only visit websites you can trust.</strong> This policy summary is not a legal advice.</p>
+            <p class="text-center">If you do not consent to have your data collected from this web browser or device, you may share the original link below to another browser or device: <code>{{.TargetURL}}</code></p>
+        </div>
+    </main>
+    <div class="modal fade" id="share-qr" tabindex="-1" aria-labelledby="share-qr-modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="share-qr-modal-title">{{T .Ctx "redirect_page.cta_share_qr"}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <noscript>{{T .Ctx "noscript.qr_code"}}</noscript>
+                    <div id="share-qr-img"></div>
+                    <script type="text/javascript">
+                        new QRCode(document.getElementById("share-qr-img"), document.getElementById("dest-url").textContent);
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{{end}}

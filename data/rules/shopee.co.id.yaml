@@ -1,0 +1,15 @@
+name: Shopee
+regions:
+  - id
+account:
+  logged_in: always_enforced
+  match_region: always_enforced
+client_app:
+  mobile_app: always_enforced
+  match_region: always_enforced
+captcha: enforced_if_consuming
+links:
+  cookies: "https://help.shopee.co.id/portal/article/71188-Kebijakan-Privasi-Shopee"
+  privacy: "https://help.shopee.co.id/portal/article/71188-Kebijakan-Privasi-Shopee"
+  terms_of_use: "https://help.shopee.co.id/portal/category/71187-Syarat-Layanan-Shopee"
+  moderation: "https://help.shopee.co.id/portal/article/73507-Peraturan-Komunitas"

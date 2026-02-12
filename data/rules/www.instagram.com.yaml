@@ -1,0 +1,15 @@
+name: Instagram
+domain_aliases:
+  - instagram.com
+captcha: enforced_if_mass_traffic
+client_app:
+  mobile_app: optionally_enforced
+account:
+  logged_in: always_enforced
+  not_banned_by_author: always_enforced
+  not_banned_by_platform: always_enforced
+links:
+  terms_of_use: https://help.instagram.com/581066165581870/
+  cookies: https://privacycenter.instagram.com/policies/cookies/
+  moderation: https://transparency.meta.com/policies/community-standards/
+  privacy: https://privacycenter.instagram.com/policy/

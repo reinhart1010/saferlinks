@@ -1,0 +1,7 @@
+optionally_enforced: "Opsional"
+enforced_if_mass_traffic: "Jika lalin padat"
+enforced_if_private_intended: "Jika dibutuhkan oleh konten"
+enforced_if_auto_nsfw: "Khusus konten eksplisit"
+enforced_if_interacting: "Diwajibkan untuk berinteraksi"
+enforced_if_consuming: "Diwajibkan untuk melihat isi konten"
+always_enforced: "Diwajibkan"

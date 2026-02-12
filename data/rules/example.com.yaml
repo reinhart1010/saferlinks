@@ -1,0 +1,2 @@
+name: example.com
+captcha: enforced_if_mass_traffic # Cloudflare

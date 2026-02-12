@@ -1,0 +1,3 @@
+{{define "_eubadge"}}
+<span class="badge text-bg-{{(getColorSchemeFromEnforcementUrgency .EnforcementUrgency)}}">{{T .Ctx (decodeEnforcementUrgency .EnforcementUrgency)}}</span>
+{{end}}

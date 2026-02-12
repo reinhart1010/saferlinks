@@ -1,0 +1,7 @@
+name: Gojek
+regions:
+  - id
+client_app:
+  mobile_app: always_enforced
+account:
+  match_region: always_enforced

@@ -1,0 +1,5 @@
+name: The Verge
+account:
+  logged_in: always_enforced
+content_access:
+  platform_subscription: always_enforced
