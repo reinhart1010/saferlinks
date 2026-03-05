@@ -5,3 +5,114 @@ enforced_if_auto_nsfw: "Khusus konten eksplisit"
 enforced_if_interacting: "Diwajibkan untuk berinteraksi"
 enforced_if_consuming: "Diwajibkan untuk melihat isi konten"
 always_enforced: "Diwajibkan"
+
+account:
+  logged_in:
+    phrase: "masuk ke dalam akun"
+    phrase_start: "masuk ke dalam akun <strong>{{.Name}}</strong>"
+    info_title: "Akun {{.Name}}"
+    info_description: "Anda akan diwajibkan untuk masuk ke dalam akun <strong>{{.Name}}</strong> untuk melihat konten atau informasi lebih lanjut."
+  match_region:
+    phrase: "dengan akun terdaftar di <strong>{{.Regions}}</strong>"
+    phrase_start: "menggunakan akun yang terdaftar di <strong>{{.Regions}}</strong>"
+    info_title: "Akun {{.Name}} harus terdaftar dalam Wilayah atau Negara yang dibenarkan"
+    info_description: "Konten ini mungkin hanya dapat diakses menggunakan akun yang terdaftar dalam wilayah atau negara ini: {{.Regions}}."
+  not_banned_by_author: 
+    phrase: "dengan akun yang tidak dibatasi atau dilarang oleh pencipta konten"
+    phrase_start: "menggunakan akun <strong>{{.Name}}</strong> yang tidak dibatasi atau dilarang oleh pencipta konten"
+    info_title: "Akun {{.Name}} harus tidak dibatasi atau dilarang oleh pencipta konten"
+    info_description: "Akun Anda harus tidak dibatasi atau dilarang untuk melihat konten ini atau konten lainnya oleh pencipta yang sama."
+  not_banned_by_author: 
+    phrase: "dengan akun yang tidak dibatasi atau dilarang oleh {{.Name}}"
+    phrase_start: "menggunakan akun yang tidak dibatasi atau dilarang oleh <strong>{{.Name}}</strong>"
+    info_title: "Akun harus tidak dibatasi atau dilarang oleh {{.Name}}"
+    info_description: "Akun Anda harus tidak dibatasi atau dilarang oleh <strong>{{.Name}}</strong> melihat konten ini atau konten lainnya dalam {{.Name}}."
+client_app:
+  desktop_app:
+    phrase: "menggunakan aplikasi komputer desktop"
+    phrase_start: "menggunakan aplikasi <strong>{{.Name}}</strong> untuk komputer desktop"
+    info_title: "Aplikasi Desktop/Mac/PC"
+    info_description: "Unduh dan pasang aplikasi <strong>{{.Name}}</strong> untuk mengakses konten ini dalam perangkat komputer desktop, Mac, atau PC."
+  mobile_app:
+    phrase: "menggunakan aplikasi ponsel atau tablet"
+    phrase_start: "menggunakan aplikasi <strong>{{.Name}}</strong> untuk perangkat ponsel atau tablet"
+    info_title: "Aplikasi Mobile (untuk ponsel pintar / komputer tablet)"
+    info_description: "Unduh dan pasang aplikasi <strong>{{.Name}}</strong> untuk mengakses konten ini dalam perangkat ponsel pintar atau komputer tablet."
+  dedicated_hardware:
+    phrase: "menggunakan perangkat keras yang disediakan khusus untuk {{.Name}}"
+    phrase_start: "menggunakan perangkat keras yang disediakan khusus untuk <strong>{{.Name}}</strong>"
+    info_title: "Perangkat Keras Khusus"
+    info_description: "Anda mungkin diwajibkan untuk mengakses konten ini dalam perangkat keras khusus yang disediakan oleh {{.Name}} daripada perangkat keras ini."
+  must_latest_client_software:
+    phrase: "dengan versi peranti lunak terkini"
+    phrase_start: "menggunakan versi peranti lunak <strong>{{.Name}}</strong> terkini"
+    info_title: "Wajib Memakai Versi Peranti Klien Terkini"
+    info_description: "Untuk kepastian keamanan dan stabilitas pengalaman, Anda diwajibkan untuk menggunakan versi terkini atas peranti lunak yang disediakan oleh <strong>{{.Name}}</strong>."
+  must_latest_host_software:
+    phrase: "dengan versi sistem operasi terkini"
+    phrase_start: "menggunakan versi sistem operasi terkini"
+    info_title: "Wajib Menggunakan Aplikasi/Peranti Klien dalam Sistem Operasi Versi Terkini"
+    info_description: "Untuk kepastian keamanan dan stabilitas pengalaman, Anda diwajibkan untuk menggunakan versi sistem operasi terkini untuk menjalankan peranti lunak <strong>{{.Name}}</strong>."
+  match_region:
+    phrase: "mendapatkan versi aplikasi atau klien di <strong>{{.Regions}}</strong>"
+    phrase_start: "mendapatkan versi aplikasi atau klien <strong>{{.Name}}</strong> di <strong>{{.Regions}}</strong>"
+    info_title: "Aplikasi atau Perangkat {{.Name}} harus didapatkan dalam Wilayah atau Negara yang dibenarkan"
+    info_description: "Anda diwajibkan untuk menggunakan aplikasi atau perangkat keras {{.Regions}} yang telah dirancang dan digunakan untuk wilayah atau negera ini: {{.Regions}}. <strong>Mengumpulkan, memodifikasi, dan/atau menggunakan produk yang dibatasi oleh wilayah penggunaan secara tanpa izin dapat melanggar ketentuan hukum mengenai hak cipta dan pemanfaatan produk teknologi informasi.</strong>"
+content_access:
+  author_subscription:
+    phrase: "berlangganan kepada pencipta konten ini"
+    phrase_start: "berlangganan kepada pencipta konten ini"
+    info_title: "Langganan kepada Pencipta Konten"
+    info_description: "Konten ini mungkin dapat dibatasi agar hanya dapat diakses oleh sebagian pengguna yang berlangganan kepada pencipta konten ini. Untuk informasi lebih lanjut, hubungi pencipta konten ini."
+  platform_subscription:
+    phrase: "mempunyai jenis langganan {{.Name}} yang valid"
+    phrase_start: "mempunyai jenis langganan <strong>{{.Name}}</strong> yang valid"
+    info_title: "Langganan kepada {{.Name}}"
+    info_description: "Konten ini mungkin dapat dibatasi agar hanya dapat diakses oleh sebagian pengguna yang berlangganan kepada {{.Name}} dengan jenis langganan yang tepat. Untuk informasi lebih lanjut, hubungi {{.Name}}."
+  content_payment:
+    phrase: "membayar atau mempunyai hak akses"
+    phrase_start: "membayar atau mempunyai hak akses"
+    info_title: "Pembayaran Akses Per-Konten"
+    info_description: "Pemirsa dan pelanggan mungklin perlu membayar untuk mendapatkan akses atas konten ini."
+  content_password:
+    phrase: "mempunyai kata sandi atau kode akses yang valid"
+    phrase_start: "mempunyai kata sandi atau kode akses yang valid"
+    info_title: "Kata Sandi untuk Mengakses Konten"
+    info_description: "Pemirsa dan pelanggan mungklin mendapatkan Kata Sandi, Kode Akses, PIN, Token, atau Kunci Lisensi untuk mengakses konten ini."
+captcha:
+  phrase: "membuktikan bahwa Anda bukanlah robot"
+  phrase_start: "membuktikan <strong>{{.Name}}</strong> bahwa Anda bukanlah robot"
+  info_title: "Pembuktian bahwa Anda bukanlah robot"
+  info_description: "Anda mungkin diminta untuk menyelesaikan tugas atau tantangan singkat (seperti CAPTCHA) untuk membuktikan bahwa Anda bukanlah robot."
+
+delimiters:
+  comma: ","
+  comma_space: ", "
+  comma_and: ", dan"
+  comma_and_space: ", dan "
+  comma_and_or: ", dan/atau"
+  comma_and_or_space: ", dan/atau "
+  comma_or: ", atau"
+  comma_or_space: ", atau "
+
+redirect_page:
+  title_generic: "Anda sedang meninggalkan situs ini untuk <strong>{{.Name}}</strong>"
+  title_warning: "Anda diwajibkan untuk {{.Requirements}} untuk melihat konten ini."
+  policies_intro: "{{.Name}} dapat membatasi Anda untuk mengakses konten pada <code id=\"dest-url\">{{.Url}}</code> dalam peramban atau perangkat ini berdasarkan kebijakan akses dan penggunaan mereka:"
+  conclusion_notice: "<strong>Hanya kunjungi situs yang dapat Anda percayai.</strong> Ringkasan kebijakan ini bukanlah nasihat hukum."
+  cta_continue_to_site: "Lanjutkan menuju Situs"
+  cta_share_qr: "Bagikan kode QR"
+
+noscript:
+  qr_code: "JavaScript diperlukan untuk membuat kode QR."
+
+country_au: Australia
+country_aus: Australia
+country_id: Indonesia
+country_idn: Indonesia
+country_ph: Filipina
+country_phl: Filipina
+country_sg: Singapura
+country_sgp: Singapura
+country_us: Amerika Serikat
+country_usa: Amerika Serikat
