@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/halfmoon.min.css" />
     <link rel="stylesheet" href="/static/bootstrap-icons/bootstrap-icons.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>You are leaving {{.OriginAppName}} for {{.Policy.Name}}.</title>
+    <title>{{TP .Ctx "redirect_page.title_generic" .Policy}}</title>
     <script src="/static/qrcode.min.js"></script>
     <script src="/static/bootstrap.bundle.min.js"></script>
 </head>
@@ -36,16 +36,16 @@
         </div>
         <h1 class="fs-2 fw-normal text-center">
             {{if getMandatoryEssentialsFromPolicy .Policy}}
-                {{renderRequirementsWarning .ctx .Policy}}
+                {{renderRequirementsWarning .Ctx .Policy}}
             {{else}}
-                {{TP .Ctx "redirect_page.title_generic"}}.
+                {{TP .Ctx "redirect_page.title_generic" .Policy}}.
             {{end}}
         </h1>
         <div class="d-flex flex-column gap-2">
             <a class="btn btn-primary btn-lg w-100" href="{{.TargetURL}}">{{T .Ctx "redirect_page.cta_continue_to_site"}}</a>
             <a class="btn btn-outline-primary btn-lg w-100" role="button" href="#share-qr" data-bs-toggle="modal">{{T .Ctx "redirect_page.cta_share_qr"}}</a>
         </div>
-        <p class="fs-5 mb-0 text-center">{{renderRequirementsDetail .ctx .Policy .TargetURL}}</p>
+        <p class="fs-5 mb-0 text-center">{{renderRequirementsDetail .Ctx .Policy .TargetURL}}</p>
         <div class="d-flex flex-column gap-2">
             {{if .Policy.ContentAccess}}
                 {{if .Policy.ContentAccess.ContentPayment}}
